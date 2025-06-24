@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link src="script.js">
         <link rel="stylesheet" href="style.css" />
         <title>Minha Primeira Página Web</title>
     </head>
@@ -11,24 +12,60 @@
             <h1>Minha Primeira Página Web</h1>    
             <p>Essa é minha primeira página Web hospedada no GitHub Pages!</p>
             <p>Meu perfil no GitHub: <a href="https://github.com/HendrikBK">link</a></p>
-            <section id="examples">
-                <article id="ord-list">
-                    <h2>Exemplo de lista ordenada</h2>
-                    <ol>
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
-                        <li>
-                            <ol>
-                                <li>Item 3.1</li>
-                                <li>Item 3.2</li>
-                                <li>Item 3.3</li>
-                                <li>Item 3.4</li>
-                            </ol>
-                        </li>
-                        <li>Item 4</li>
-                    </ol>
-                </article>
-            </section>
+
+            <select id="seleciona_cor" name="select">
+                <option value="#ff0000">Vermelho</option>
+                <option value="#00ff00">Verde</option>
+                <option value="#0000ff">Azul</option>
+                <option value="#000000">Preto</option>
+                <option value="#ff94d2">Rosa</option>
+                <option value="#ffffff" selected>Branco</option>
+            </select>
+
+            <input id="campo">
+            <button id="apresentar" type="submit">Dar olá</button>
+
+            <p id="resultado"></p>
+
+            <button id="apagar">Apagar</button>
+
+            <ul id="lista_tarefas">  
+            </ul>
+            <input type="text" id="tarefa">
+            <button id="adicionar_tarefa">Adicionar</button>
     </body>
+    <script>
+
+        function tarefa(event) {
+            let lista = document.getElementById('lista_tarefas');
+            let tarefa = document.createElement('li');
+            let texto = document.getElementById('tarefa').value;
+
+            tarefa.innerHTML = texto;
+            lista.appendChild(tarefa);
+        }
+
+        function trocaCor(event) {
+            document.body.style.background = event.target.value;
+        }
+        
+        function darOi(event) {
+            event.preventDefault();
+            //console.log("Olá " + document.getElementById("campo").value + "!");
+            document.getElementById('resultado').innerHTML = "Olá " + document.getElementById("campo").value + "!";
+        }
+
+
+        function clearInputField() {
+            //document.getElementById('resultado').reset();
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        document.getElementById("apagar").addEventListener('click', clearInputField);
+
+        document.getElementById('adicionar_tarefa').addEventListener('click', tarefa);
+
+        document.addEventListener("change", trocaCor);
+        document.getElementById("apresentar").addEventListener('click', darOi);
+    </script>
 </html>
